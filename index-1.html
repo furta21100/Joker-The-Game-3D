@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Joker The Game 3D</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="g3d">
+  <!-- Three.js renders into here -->
+
+  <!-- HUD -->
+  <div id="hud">
+    <div>
+      <div id="badge">// STREET 01</div>
+      <div id="lvs">&#9829;&#9829;&#9829;&#9829;&#9829;</div>
+    </div>
+    <div class="hpr">
+      <div class="hp-lbl">HP</div>
+      <div id="hpbar"><div id="hpfill"></div></div>
+    </div>
+  </div>
+
+  <!-- HINT -->
+  <div id="hint" style="display:none"></div>
+
+  <!-- CROSSHAIR -->
+  <div id="xhair">
+    <div class="xh" id="xhL"></div><div class="xh" id="xhR"></div>
+    <div class="xh" id="xhU"></div><div class="xh" id="xhDn"></div>
+  </div>
+
+  <!-- ── START ── -->
+  <div class="ov on" id="ovS">
+    <div class="s-sub">UK DRILL &middot; UNDERGROUND &middot; 3D</div>
+    <div class="logo">JOKER<br>THE GAME</div>
+    <div class="s-tag">Street Chronicles</div>
+    <button class="go-btn" id="btnS">&#9654;&nbsp; ENTER THE BLOCK</button>
+    <div style="font-size:8px;color:#2a0050;letter-spacing:3px;margin-top:4px">&copy; FURTA LieF MUSIC</div>
+  </div>
+
+  <!-- ── MIRROR ── -->
+  <div class="ov" id="ovM">
+    <div class="q-lbl">// EL ESPEJO HABLA //</div>
+    <div class="m-q">&iquest;Qu&eacute; es lo que buscas?</div>
+    <div class="q-list">
+      <button class="m-btn" id="mA">La Gloria</button>
+      <button class="m-btn" id="mB">Find Yourself</button>
+    </div>
+  </div>
+
+  <!-- ── QUIZ ── -->
+  <div class="ov" id="ovQ">
+    <div class="q-lbl" id="qlbl">// PREGUNTA //</div>
+    <div class="q-txt" id="qtxt"></div>
+    <div class="q-list" id="qlist"></div>
+  </div>
+
+  <!-- ── ENEMY ── -->
+  <div class="ov" id="ovE">
+    <div class="q-lbl">// RESPUESTA INCORRECTA //</div>
+    <div class="e-title">&#128580; &iexcl;UN ENEMIGO!</div>
+    <div class="e-lvs" id="elvs">VIDAS: &#9829;&#9829;&#9829;&#9829;&#9829;</div>
+    <canvas id="ecan" width="270" height="175"></canvas>
+    <button class="e-fight" id="btnE">[ DISPARAR ]</button>
+  </div>
+
+  <!-- ── DEAD ── -->
+  <div class="ov" id="ovD">
+    <div class="q-lbl">// GAME OVER //</div>
+    <div class="d-title">LA INDUSTRIA<br>GAN&Oacute;</div>
+    <div class="d-sub">No te conoces a ti mismo... a&uacute;n.</div>
+    <button class="d-btn" id="btnR">[ INTENTAR DE NUEVO ]</button>
+  </div>
+
+  <!-- ── WIN ── -->
+  <div class="ov" id="ovW">
+    <div class="q-lbl" id="wlbl">// MISI&Oacute;N COMPLETA //</div>
+    <div class="w-title" id="wtitle">VICTORIA</div>
+    <div class="w-sub">LA INDUSTRIA HA CA&Iacute;DO</div>
+    <div class="w-box">
+      <div class="w-name">&#9834; Joker &ndash; Furta LieF</div>
+      <div id="pbar"><div id="pfill"></div></div>
+      <div class="w-row">
+        <span class="w-time" id="pcur">0:00</span>
+        <button id="pbtn">&#9654;</button>
+        <span class="w-time" id="ptot">0:00</span>
+      </div>
+    </div>
+    <a class="w-yt" href="https://youtu.be/FiqwQ_8k1Ec?is=UG-A4Yh_rBuDt10d" target="_blank" rel="noopener">
+      &#9654; VER VIDEOCLIP EN YOUTUBE
+    </a>
+  </div>
+
+  <div id="fl"></div>
+</div>
+
+<!-- ── GAMEBOY ── -->
+<div id="pad">
+  <div id="dp">
+    <div class="d" id="dU">&#9650;</div>
+    <div class="d" id="dD">&#9660;</div>
+    <div class="d" id="dL">&#9668;</div>
+    <div class="d" id="dR">&#9658;</div>
+  </div>
+  <div id="ap">
+    <div class="a" id="aF">&#128299;</div>
+    <div class="a" id="aJ">&#8679;</div>
+  </div>
+</div>
+
+<audio id="bgm" src="come_back.mp3" loop preload="auto"></audio>
+<audio id="fur" src="furta.mp3" preload="auto"></audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

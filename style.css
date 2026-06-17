@@ -1,0 +1,246 @@
+/* ═══ JOKER THE GAME — STYLE ═══════════════════════════════════ */
+* { margin:0; padding:0; box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent; user-select:none; }
+
+html, body {
+  width:100%; height:100%; overflow:hidden; background:#000;
+  font-family:'Courier New', monospace;
+  display:flex; flex-direction:column;
+}
+
+/* ── GAME VIEWPORT ── */
+#g3d {
+  flex:1; min-height:0; position:relative; overflow:hidden;
+}
+#g3d canvas { display:block; width:100%!important; height:100%!important; }
+
+/* ── OVERLAYS ── */
+.ov {
+  display:none; position:absolute; inset:0;
+  flex-direction:column; align-items:center; justify-content:center;
+  gap:18px; z-index:80; pointer-events:all;
+}
+.ov.on { display:flex; }
+
+#ovS  { background: radial-gradient(ellipse at center, #1a0035 0%, #000 70%); }
+#ovM  { background: rgba(0,0,0,.94); }
+#ovQ  { background: rgba(0,5,20,.96); }
+#ovE  { background: rgba(10,0,0,.96); }
+#ovD  { background: rgba(0,0,0,.97); }
+#ovW  { background: radial-gradient(ellipse at center, #001a00 0%, #000 70%); }
+
+/* ── START SCREEN ── */
+.logo {
+  font-size: clamp(36px, 10vw, 64px);
+  font-weight: 900; color: #fff; text-align:center; line-height:1.1;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px #ff00ff, 3px 3px 0 #c300ff, 6px 6px 0 #ff0050;
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+@keyframes logoGlow {
+  from { text-shadow: 0 0 20px #ff00ff, 3px 3px 0 #c300ff, 6px 6px 0 #ff0050; }
+  to   { text-shadow: 0 0 40px #ff00ff, 0 0 60px #c300ff, 3px 3px 0 #ff0050; }
+}
+.s-tag { font-size:10px; color:#c300ff; letter-spacing:7px; text-transform:uppercase; }
+.s-sub { font-size:9px; color:#444; letter-spacing:4px; }
+
+.go-btn {
+  padding: 16px 52px;
+  background: linear-gradient(135deg, #c300ff22, #ff005022);
+  border: 2px solid #c300ff;
+  color: #fff; font-family:'Courier New',monospace;
+  font-size: clamp(13px,3.5vw,16px); letter-spacing:5px;
+  text-transform:uppercase; cursor:pointer;
+  box-shadow: 0 0 20px #c300ff66, inset 0 0 20px #c300ff11;
+  transition: all .2s;
+}
+.go-btn:active { background: #c300ff33; transform: scale(.97); }
+
+/* ── QUIZ / MIRROR SHARED ── */
+.q-lbl { font-size:9px; color:#c300ff; letter-spacing:6px; text-shadow:0 0 8px #c300ff; }
+.q-txt {
+  font-size: clamp(14px,4vw,20px); color:#eee; text-align:center;
+  max-width:88%; line-height:1.8;
+  border-left: 3px solid #c300ff; padding:10px 16px;
+}
+.q-list { display:flex; flex-direction:column; gap:12px; width:85%; max-width:330px; }
+.q-btn {
+  padding:14px 18px; background:#050010;
+  border:1px solid #3a0060; color:#888;
+  font-family:'Courier New',monospace;
+  font-size:clamp(12px,3.2vw,15px); cursor:pointer; text-align:left;
+  transition: all .15s;
+}
+.q-btn:hover, .q-btn:active { border-color:#c300ff; color:#c300ff; background:#c300ff0a; box-shadow:0 0 12px #c300ff44; }
+
+.m-q {
+  font-size:clamp(18px,5vw,26px); color:#fff; font-weight:700;
+  text-align:center; max-width:88%; line-height:1.6;
+  border-left:3px solid #b8ff2e; padding:10px 18px;
+  text-shadow:0 0 10px #b8ff2e44;
+}
+.m-btn {
+  padding:14px 18px; background:#001500;
+  border:1px solid #1a4400; color:#777;
+  font-family:'Courier New',monospace;
+  font-size:clamp(12px,3.2vw,15px); cursor:pointer; text-align:left;
+  transition:all .15s;
+}
+.m-btn:hover, .m-btn:active { border-color:#b8ff2e; color:#b8ff2e; background:#b8ff2e0a; box-shadow:0 0 12px #b8ff2e44; }
+
+/* ── DEAD ── */
+.d-title {
+  font-size:clamp(28px,7vw,50px); font-weight:900; color:#ff0050;
+  letter-spacing:4px; text-align:center; line-height:1.2;
+  text-shadow: 0 0 30px #ff0050, 0 0 60px #ff005066;
+  animation: pulse 1.5s infinite alternate;
+}
+@keyframes pulse { from{opacity:1;} to{opacity:.7;} }
+.d-sub { font-size:11px; color:#444; letter-spacing:3px; text-align:center; }
+.d-btn {
+  padding:14px 44px; background:transparent;
+  border:2px solid #ff0050; color:#ff0050;
+  font-family:'Courier New',monospace; font-size:14px;
+  letter-spacing:4px; cursor:pointer; transition:all .2s;
+}
+.d-btn:active { background:#ff005022; }
+
+/* ── WIN ── */
+.w-title {
+  font-size:clamp(32px,8vw,54px); font-weight:900; color:#b8ff2e;
+  letter-spacing:4px; text-shadow:0 0 30px #b8ff2e, 0 0 60px #b8ff2e66;
+}
+.w-sub { font-size:10px; color:#3a5000; letter-spacing:5px; }
+.w-box {
+  width:88%; max-width:320px; background:#020a00;
+  border:1px solid #b8ff2e; padding:16px;
+  display:flex; flex-direction:column; gap:10px;
+  box-shadow:0 0 20px #b8ff2e33;
+}
+.w-name { color:#b8ff2e; font-size:13px; font-weight:700; letter-spacing:2px; text-align:center; }
+#pbar { width:100%; height:7px; background:#0a1400; border:1px solid #2a4400; cursor:pointer; position:relative; }
+#pfill { height:100%; width:0%; background:linear-gradient(90deg,#4a8000,#b8ff2e); pointer-events:none; transition:width .1s; }
+.w-row { display:flex; align-items:center; justify-content:space-between; }
+.w-time { font-size:10px; color:#4a6600; }
+#pbtn {
+  width:48px; height:48px; background:#020a00; border:1px solid #b8ff2e;
+  color:#b8ff2e; font-size:20px; cursor:pointer;
+  box-shadow:0 0 10px #b8ff2e44;
+}
+#pbtn:active { background:#b8ff2e22; }
+.w-yt {
+  display:block; width:88%; max-width:320px;
+  padding:14px 20px; background:transparent;
+  border:1px solid #b8ff2e; color:#b8ff2e;
+  font-family:'Courier New',monospace; font-size:12px;
+  letter-spacing:2px; text-decoration:none; text-align:center;
+  box-shadow:0 0 15px #b8ff2e33; transition:all .2s;
+}
+.w-yt:active { background:#b8ff2e11; }
+
+/* ── ENEMY FIGHT ── */
+.e-title { font-size:clamp(20px,5vw,28px); font-weight:900; color:#ff6600; letter-spacing:3px; text-align:center; text-shadow:0 0 15px #ff660088; }
+.e-lvs { font-size:11px; color:#663300; letter-spacing:3px; }
+#ecan { display:block; background:#080000; border:1px solid #ff660044; border-radius:4px; }
+.e-fight {
+  padding:14px 44px; background:transparent;
+  border:2px solid #ff6600; color:#ff6600;
+  font-family:'Courier New',monospace; font-size:15px;
+  letter-spacing:4px; cursor:pointer;
+  box-shadow:0 0 15px #ff660044; transition:all .2s;
+}
+.e-fight:active { background:#ff660022; transform:scale(.97); }
+
+/* ── HUD ── */
+#hud {
+  position:absolute; top:0; left:0; right:0;
+  padding:10px 14px; display:flex;
+  justify-content:space-between; align-items:flex-start;
+  pointer-events:none; z-index:40;
+}
+#badge {
+  font-size:9px; color:#c300ff; letter-spacing:3px;
+  text-shadow:0 0 8px #c300ff; background:rgba(0,0,0,.5);
+  padding:4px 8px;
+}
+#lvs { font-size:13px; color:#ff6600; margin-top:4px; text-shadow:0 0 6px #ff660088; }
+.hpr { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+.hp-lbl { font-size:8px; color:#ff0050; letter-spacing:3px; }
+#hpbar { width:120px; height:9px; background:#1a000a; border:1px solid #660022; }
+#hpfill {
+  height:100%; width:100%;
+  background:linear-gradient(90deg,#ff0050,#ff6600);
+  box-shadow:0 0 6px #ff005088; transition:width .2s;
+}
+
+/* ── HINT ── */
+#hint {
+  position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+  font-size:10px; color:#b8ff2e; letter-spacing:3px;
+  text-shadow:0 0 8px #b8ff2e; pointer-events:none; z-index:35;
+  background:rgba(0,0,0,.6); padding:5px 12px;
+  animation:hintPulse 1.4s ease-in-out infinite alternate;
+  white-space:nowrap;
+}
+@keyframes hintPulse { from{opacity:.5;} to{opacity:1;} }
+
+/* ── CROSSHAIR ── */
+#xhair { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:35; }
+.xh { position:absolute; background:#b8ff2e; opacity:.7; }
+#xhL { width:14px; height:2px; top:-1px; left:-17px; }
+#xhR { width:14px; height:2px; top:-1px; left:4px; }
+#xhU { width:2px; height:14px; top:-17px; left:-1px; }
+#xhDn{ width:2px; height:14px; top:4px;  left:-1px; }
+
+/* ── FLASH ── */
+#fl { position:absolute; inset:0; background:#ff0050; opacity:0; pointer-events:none; z-index:90; transition:opacity .25s; }
+
+/* ── GAMEBOY PAD ── */
+#pad {
+  flex-shrink:0; height:200px;
+  background:linear-gradient(160deg,#0d0018,#06000f);
+  border-top:2px solid #4400aa;
+  display:flex; align-items:center; justify-content:center;
+  gap:36px; padding:10px 0 16px; position:relative;
+}
+#pad::before {
+  content:'JOKER THE GAME 3D'; position:absolute; top:5px;
+  left:50%; transform:translateX(-50%);
+  font-size:8px; letter-spacing:4px; color:#2a0050; white-space:nowrap;
+}
+
+/* D-PAD */
+#dp { width:154px; height:154px; position:relative; flex-shrink:0; }
+.d {
+  position:absolute; width:50px; height:50px;
+  background:linear-gradient(145deg,#1c1c2a,#0d0d1a);
+  border:2px solid #220044; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:#5500aa; cursor:pointer;
+  box-shadow:0 4px 0 #000, inset 0 1px 0 #3a0066;
+}
+.d.on {
+  background:linear-gradient(145deg,#1a0035,#0d001a);
+  box-shadow:0 1px 0 #000; transform:translateY(3px);
+  color:#c300ff; text-shadow:0 0 10px #c300ff;
+}
+#dU{top:0;left:52px;} #dD{bottom:0;left:52px;}
+#dL{top:52px;left:0;} #dR{top:52px;right:0;}
+#dp::after {
+  content:''; position:absolute; top:52px; left:52px;
+  width:50px; height:50px; background:#0d0d1a;
+  border:2px solid #110022; border-radius:4px; pointer-events:none;
+}
+
+/* ACTION BUTTONS */
+#ap { width:160px; height:154px; position:relative; flex-shrink:0; }
+.a {
+  position:absolute; width:62px; height:62px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; cursor:pointer;
+  box-shadow:0 5px 0 rgba(0,0,0,.8), inset 0 2px 0 rgba(255,255,255,.1);
+  border:2px solid rgba(0,0,0,.4);
+}
+.a.on { transform:translateY(4px); box-shadow:0 1px 0 rgba(0,0,0,.8); }
+#aF { background:radial-gradient(circle at 38% 35%,#ff3333,#6b0000); bottom:8px; right:6px; }
+#aJ { background:radial-gradient(circle at 38% 35%,#b8ff2e,#3a6600); top:8px; right:72px; color:#000; }
